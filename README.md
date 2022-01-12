@@ -1,6 +1,7 @@
 # expenses_app
 
 A new Flutter project.
+it is from Maximilian Schwarzmüller's udemy course
 
 ## Getting Started
 
