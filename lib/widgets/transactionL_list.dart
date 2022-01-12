@@ -12,42 +12,39 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      child: ListView(children: [
-        Column(
-          children: _userTransactions.map((tx) {
+        height: 300,
+        child: ListView.builder(
+          itemBuilder: (ctx, index) {
             return Card(
               child: Row(
                 children: [
-                  // costs of things
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.purple, width: 3)),
                     padding: EdgeInsets.all(7.0),
                     child: Text(
-                      '\$ ${tx.amount}',
+                      '\$ ${_userTransactions[index].amount}',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.purple[300]),
                     ),
                   ),
-
-                  // name and date
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                           margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
                           child: Text(
-                            '${tx.title}',
+                            '${_userTransactions[index].title}',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           )),
                       Container(
                           child: Text(
-                        DateFormat.yMd().format(tx.dateTime),
+                        DateFormat.yMd()
+                            .format(_userTransactions[index].dateTime),
                         style: TextStyle(color: Colors.grey, fontSize: 15),
                       ))
                     ],
@@ -55,9 +52,8 @@ class TransactionList extends StatelessWidget {
                 ],
               ),
             );
-          }).toList(),
-        ),
-      ]),
-    );
+          },
+          itemCount: _userTransactions.length,
+        ));
   }
 }
