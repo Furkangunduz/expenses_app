@@ -15,7 +15,7 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    addTransaction(titleController.text, double.parse(amountController.text));
+    addTransaction(titleController.text, enteredAmount);
   }
 
   @override
@@ -42,7 +42,7 @@ class NewTransaction extends StatelessWidget {
               onSubmitted: (_) => submitData(),
             ),
             ElevatedButton(
-              onPressed: () => submitData(),
+              onPressed: submitData,
               child: Text("AddTransaction"),
             )
           ],
