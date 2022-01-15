@@ -9,7 +9,13 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Flutter", home: MyHomePage());
+    return MaterialApp(
+        title: "Flutter",
+        theme: ThemeData(
+            primarySwatch: Colors.green,
+            accentColor: Colors.amber,
+            fontFamily: "Quicksand"),
+        home: MyHomePage());
   }
 }
 
@@ -20,10 +26,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-        id: "t1", title: "Book", amount: 15.99, dateTime: DateTime.now()),
-    Transaction(
-        id: "t2", title: "shoes", amount: 99.99, dateTime: DateTime.now())
+    // Transaction(
+    //     id: "t1", title: "Book", amount: 15.99, dateTime: DateTime.now()),
+    // Transaction(
+    //     id: "t2", title: "shoes", amount: 99.99, dateTime: DateTime.now())
   ];
 
   _addNewTransaction(String txtitle, double txamount) {
@@ -63,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                   width: double.infinity,
                   child: Card(
-                    color: Colors.blue,
+                    color: Theme.of(context).accentColor,
                     child: Text("CHART!CHART!CHART!"),
                     elevation: 7,
                   )),

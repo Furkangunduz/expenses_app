@@ -16,12 +16,18 @@ class _NewTransactionState extends State<NewTransaction> {
 
   void submitData() {
     final enteredTitle = titleController.text;
-    final enteredAmount = double.parse(amountController.text);
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    final enteredAmount = amountController.text.isEmpty
+        ? 0.0
+        : double.parse(amountController.text);
+    if (enteredTitle.isEmpty || enteredAmount < 0) {
       return;
     }
 
+    //stful class methoduna erişim sağlar
+
     widget.addTransaction(titleController.text, enteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override

@@ -13,47 +13,68 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 300,
-        child: ListView.builder(
-          itemBuilder: (ctx, index) {
-            return Card(
-              child: Row(
-                children: [
+        child: _userTransactions.isEmpty
+            ? Column(
+                children: <Widget>[
+                  Text("No transactions added yet!"),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.purple, width: 3)),
-                    padding: EdgeInsets.all(7.0),
-                    child: Text(
-                      '\$ ${_userTransactions[index].amount.toStringAsFixed(2)}',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.purple[300]),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
-                          child: Text(
-                            '${_userTransactions[index].title}',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          )),
-                      Container(
-                          child: Text(
-                        DateFormat.yMd()
-                            .format(_userTransactions[index].dateTime),
-                        style: TextStyle(color: Colors.grey, fontSize: 15),
-                      ))
-                    ],
-                  ),
+                    width: 100,
+                    child: Image.asset("assets/image/waiting.png",
+                        fit: BoxFit.cover),
+                  )
                 ],
-              ),
-            );
-          },
-          itemCount: _userTransactions.length,
-        ));
+              )
+            : ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return Card(
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Theme.of(context).primaryColor,
+                                  width: 3)),
+                          padding: EdgeInsets.all(7.0),
+                          child: Text(
+                            '\$ ${_userTransactions[index].amount.toStringAsFixed(2)}',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
+                                child: Text(
+                                  '${_userTransactions[index].title}',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).primaryColor),
+                                )),
+                            Container(
+                                child: Text(
+                              DateFormat.yMd()
+                                  .format(_userTransactions[index].dateTime),
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 15),
+                            ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                itemCount: _userTransactions.length,
+              ));
   }
 }
